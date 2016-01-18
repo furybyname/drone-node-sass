@@ -9,7 +9,7 @@ var exec = require('child_process').exec;
 var srcPath = payload.workspace.path;
 var target = vargs.target || '';
 console.log('running npm install && grunt ' + target + ' && npm prune');
-var cmd = 'cd ' + srcPath + ' && npm install && node_modules/.bin/grunt ' + target + ' && npm prune';
+var cmd = 'cd ' + srcPath + ' && npm install && node_modules/.bin/grunt ' + target + ' && npm prune --production';
 exec(cmd, function(error, stdout, stderr) {
     if (error) {
         console.log(error);
