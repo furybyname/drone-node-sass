@@ -6,7 +6,8 @@ console.log(payload);
 var vargs = payload.vargs;
 
 var exec = require('child_process').exec;
-var cmd = '/usr/bin/npm install && grunt ' + vargs.target + ' && /usr/gin/npm prune';
+var srcPath = payload.workspace.path;
+var cmd = 'cd ' + srcPath + ' && /usr/bin/npm install && grunt ' + vargs.target + ' && /usr/gin/npm prune';
 exec(cmd, function(error, stdout, stderr) {
     if (error) {
         console.log(error);
