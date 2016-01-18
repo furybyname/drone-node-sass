@@ -1,0 +1,17 @@
+publish:
+  docker:
+    username: furybyname
+    password: $$DOCKER_PASSWORD
+    email: $$DOCKER_EMAIL
+    repo: furybyname/drone-node-sass
+    when:
+      branch: master
+
+plugin:
+  name: NODE-SASS
+  desc: will do npm install && grunt
+  type: build
+  image: furybyname/drone-node-sass
+  labels:
+    - node
+    - sass
