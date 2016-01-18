@@ -8,7 +8,7 @@ publish:
       branch: master
 
 plugin:
-  name: NODE-SASS
+  name: nodesassgrunt
   desc: will do npm install && grunt
   type: build
   image: furybyname/drone-node-sass
