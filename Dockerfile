@@ -7,4 +7,4 @@ RUN chmod +x /bin/run.sh
 
 WORKDIR /drone
 
-ENTRYPOINT ["/bin/run.sh"]
+ENTRYPOINT ["node", "/bin/run.js"]
