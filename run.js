@@ -9,12 +9,37 @@ var exec = require('child_process').exec;
 var srcPath = payload.workspace.path;
 var target = vargs.target || '';
 console.log('running npm install && grunt ' + target + ' && npm prune');
-var cmd = 'cd ' + srcPath + ' && npm install && node_modules/.bin/grunt ' + target + ' && npm prune --production';
-exec(cmd, function(error, stdout, stderr) {
-    if (error) {
-        console.log(error);
+
+console.log('running npm install');
+var cmd_npmInstall = 'cd ' + srcPath + ' && npm install';
+exec(cmd_npmInstall, function(npmError, npmStdout, npmStderr) {
+    if (npmError) {
+        console.log(npmError);
         process.exit(1);
     }
-    console.log(stdout);
+    console.log(npmStdout);
+    console.log(npmStderr);
+
+    console.log('running grunt');
+    var cmd_grunt = 'cd ' + srcPath + ' && npm install && node_modules/.bin/grunt ' + target;
+    exec(cmd_grunt, function(gruntError, gruntStdout, gruntStderr) {
+        if (gruntError) {
+            console.log(gruntError);
+            process.exit(1);
+        }
+        console.log(gruntStdout);
+        console.log(gruntStderr);
+
+        console.log('running npm prune');
+        var cmd_prune = 'cd ' + srcPath + ' && npm prune --production';
+        exec(cmd_prune, function(pruneError, pruneStdout, pruneStderr) {
+            if (pruneError) {
+                console.log(pruneError);
+                process.exit(1);
+            }
+            console.log(pruneStdout);
+            console.log(pruneStderr);
+        });
+    });
   // command output is in stdout
 });
