@@ -3,8 +3,10 @@ var payload = JSON.parse(process.argv[3]);
 console.log(payload);
 //console.log(JSON.stringify(process.argv));
 
+var vargs = payload.vargs;
+
 var exec = require('child_process').exec;
-var cmd = 'npm install && grunt prod && npm prune';
+var cmd = '/usr/bin/npm install && grunt ' + vargs.target + ' && /usr/gin/npm prune';
 exec(cmd, function(error, stdout, stderr) {
     if (error) {
         console.log(error);
