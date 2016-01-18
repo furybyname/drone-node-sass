@@ -1,3 +1,3 @@
-var payload = process.argv[1];
+var payload = process.argv[2];
 console.log('working');
 console.log(payload);
