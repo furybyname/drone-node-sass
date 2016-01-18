@@ -1,1 +1,1 @@
-node run.js $1
+node /bin/run.js $1
